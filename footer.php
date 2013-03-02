@@ -27,5 +27,6 @@ $(".post p:has(img)").css("text-indent","0");
 });
 </script>
 <div data-widget="backtop"><script src="<?php $this->options->themeUrl(); ?>js/backtop.js" charset="utf-8"></script></div>
+<?php $this->footer(); ?>	
 	</body>
 </html>

@@ -31,7 +31,7 @@
                 
                 <span class="commentdate"><a href="<?php $comments->permalink(); ?>"><?php $singleCommentOptions->beforeDate();
                 $comments->date($singleCommentOptions->dateFormat);
-                $singleCommentOptions->afterDate(); ?></a></span><span class="useragent">[<a href="<?php $comments->permalink(); ?>"><?php Useragen_Plugin::agents($comments); ?></a> ]</span> <span class="comment-reply"><?php $comments->reply($singleCommentOptions->replyWord); ?></span>
+                $singleCommentOptions->afterDate(); ?></a></span><span class="comment-reply"><?php $comments->reply($singleCommentOptions->replyWord); ?></span>
     </div>
     <div class="comment-p">
         <?php $comments->content();?>

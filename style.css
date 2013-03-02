@@ -146,15 +146,6 @@ ol.page-navigator a {
 	text-indent:26px;
 	color:rgb(85,85,85)
 }
-.comment-meta .useragent {
-	display:none;
-}
-.comment-meta:hover .useragent {
-	display:inline;
-}
-.comment-meta:hover .commentdate {
-	display:none;
-}
 .vip {
 	position:absolute;
 	margin-left:35px;
@@ -567,12 +558,12 @@ ol.comment-list li .comment-reply a:hover,.respond .cancel-comment-reply a:hover
 	max-width:90%;
 	vertical-align:middle;
 	-ms-interpolation-mode:bicubic;
-	box-shadow:0 0 10px gray;
-	margin:20px auto;
+	border: 1px solid #EEE;
+	margin:15px auto;
 	display:block;
 }
 .highslide img {
-	border:0!important;
+	border: 1px solid #EEE!important;
 }
 body {
 	margin:0;

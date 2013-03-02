@@ -20,13 +20,14 @@
             <?php $this->widget('Widget_Contents_Post_Recent')->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
           </ul> 
     <?php endif; ?>
-<?php else: //不是文章页就输出随机文章?><span>随机文章</span>
+<?php else: //不是文章页就输出最新文章?><span>最新文章</span>
           <ul>
-             <?php ArticleList::random(); ?>
+            <?php $this->widget('Widget_Contents_Post_Recent')->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
           </ul>
      <?php endif; ?></td>
-    <td  class="links"><span>友情链接</span>  <ul> 
-<?php Links_Plugin::output("SHOW_TEXT", 10); ?>
-  </ul></td></tr>
+    <td  class="links"><span>友情链接</span>  <ul>  
+<li><a href="http://.com/" title="请到sidebar.php修改友情链接" target="_blank">请到sidebar.php修改友情链接</a></li>
+<li><a href="http://ben-lab.com/" title="Ben" target="_blank">Ben's Lab</a></li> 
+</ul></td></tr>
       </tbody>
     </table>
