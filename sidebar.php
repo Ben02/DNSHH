@@ -20,9 +20,9 @@
             <?php $this->widget('Widget_Contents_Post_Recent')->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
           </ul> 
     <?php endif; ?>
-<?php else: //不是文章页就输出最新文章?><span>最新文章</span>
+<?php else: //不是文章页就输出随机文章?><span>随机文章</span>
           <ul>
-            <?php $this->widget('Widget_Contents_Post_Recent')->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
+<?php theme_random_posts();?>
           </ul>
      <?php endif; ?></td>
     <td  class="links"><span>友情链接</span>  <ul>  

@@ -63,4 +63,28 @@ $setstar = explode("\n", $getstar);
         echo '<img class="vip-water" title="灌水达人" src="http://1.labcdn.sinaapp.com/cache/images/star.png" width="17px"/>';
     }
 }
+//随机文章
+    function theme_random_posts(){ 
+        $defaults = array( 
+            'number' => 5, 
+            'before' => '<ul class="list">', 
+            'after' => '</ul>', 
+            'xformat' => '<li><a href="{permalink}">{title}</a></li>' 
+        ); 
+        $db = Typecho_Db::get(); 
+
+        $sql = $db->select()->from('table.contents') 
+            ->where('status = ?','publish') 
+            ->where('type = ?', 'post') 
+            ->limit($defaults['number']) 
+            ->order('RAND()'); 
+         
+        $result = $db->fetchAll($sql); 
+        echo $defaults['before']; 
+        foreach($result as $val){ 
+            $val = Typecho_Widget::widget('Widget_Abstract_Contents')->filter($val); 
+            echo str_replace(array('{permalink}', '{title}'),array($val['permalink'], $val['title']), $defaults['xformat']); 
+        } 
+        echo $defaults['after']; 
+    }
 ?>
