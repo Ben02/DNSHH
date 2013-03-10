@@ -1,7 +1,7 @@
     <table class="table table-striped">
        <tbody>
         <tr style="display:none"><td></td></tr>
-        <?php while($this->next()): ?>
+        <?php while ( have_posts() ) : the_post(); ?>
         <tr>
           <td>
 		<?php if ($this->options->textDisplay == 'text') { ?>
