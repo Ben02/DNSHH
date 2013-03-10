@@ -581,124 +581,6 @@ a {
 a:hover {
 	color:#005580;
 }
-}.readers-list {
-	display:block;
-	-webkit-margin-before:1em;
-	-webkit-margin-after:1em;
-	-webkit-margin-start:0px;
-	-webkit-margin-end:0px;
-	-webkit-padding-start:40px;
-	margin-before:1em;
-	margin-after:1em;
-	margin-start:0px;
-	margin-end:0px;
-	padding-start:40px;
-	line-height:18px;
-	text-align:left;
-	overflow:hidden;
-	zoom:1;
-	padding:0;
-	border:0;
-}
-.readers-list::before,.reader-list::after {
-	content:"";
-	display:table;
-}
-.readers-list::after {
-	clear:both;
-}
-.readers-list li {
-	width:200px;
-	float:left;
-	margin:0 2px 5px -3px;
-	padding:0!important;
-	background:none;
-	list-style:none;
-	display:list-item;
-	text-align:-webkit-match-parent;
-	text-align:match-parent;
-	font-size:11px;
-}
-.readers-list a {
-	position:relative;
-	display:block;
-	height:36px;
-	margin:4px;
-	padding:4px 4px 4px 44px;
-	color:#999;
-	overflow:hidden;
-	border:#CCC 1px solid;
-	border-radius:2px;
-	box-shadow:#eee 0 0 2px;
-	background-color:#F2F2F2;
-	background-image:-webkit-linear-gradient(#F8F8F8,#F2F2F2);
-	background-image:-moz-linear-gradient(#F8F8F8,#F2F2F2);
-	background-image:linear-gradient(#F8F8F8,#F2F2F2);
-}
-.readers-list .pic {
-	-webkit-transition:all .2s ease-out;
-	transition:all .2s ease-out;
-	width:36px;
-	height:36px;
-	float:left;
-	margin:0 8px 0 -40px;
-	border-radius:2px;
-	display:inline-block;
-	vertical-align:text-bottom;
-}
-.readers-list em {
-	-webkit-transition:all .2s ease-out;
-	transition:all .2s ease-out;
-	color:#587686;
-	font-style:normal;
-	margin-right:10px;
-	font-size:12px;
-	display:block;
-	white-space:nowrap;
-	overflow:hidden;
-	width:127px;
-	float:left;
-}
-.readers-list strong {
-	color:#DDD;
-	width:40px;
-	text-align:right;
-	position:absolute;
-	right:6px;
-	top:4px;
-	font:bold 14px/16px microsoft yahei;
-	background-color:transparent;
-	-webkit-transition:all .2s ease-out;
-	transition:all .2s ease-out;
-}
-.readers-list a:hover {
-	left:5px;
-	border-color:#BBB;
-	box-shadow:#ccc 0 0 2px;
-	background-color:white;
-	background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0,#eee),color-stop(0.5,whiteSmoke),color-stop(0.83,white));
-	background-image:gradient(linear,left bottom,left top,color-stop(0,#eee),color-stop(0.5,whiteSmoke),color-stop(0.83,white));
-}
-.readers-list a:hover .pic {
-	margin-left:0
-}
-.readers-list a:hover em {
-	color:#587686;
-	font:bold 12px/36px microsoft yahei;
-	word-break:keep-all;
-	white-space:nowrap;
-	overflow:hidden;
-	width:81px;
-}
-.readers-list a:hover strong {
-	color:#e38383;
-	right:150px;
-	top:0;
-	text-align:center;
-	border-right:#ccc 1px solid;
-	height:44px;
-	line-height:40px;
-}
 ::-webkit-scrollbar {
 	width:10px;
 	margin-right:2px
@@ -713,6 +595,29 @@ a:hover {
 }
 ::-webkit-scrollbar-thumb:hover {
 	background:#1ba1e2
+}
+.postindex {
+	padding:10px!important;
+	margin-top:0!important;
+}
+.title {
+	margin:-5px 0 5px 10px;
+}
+.title img {
+	float:left;
+	border-right:2px solid #DDD;
+	padding-right:12px;
+	margin-right:10px;
+}
+.title h1 {
+	font-size:18.5px;
+	/*font-weight:bold;
+	*/border:0;
+	margin-bottom:1px;
+}
+.title .desc {
+	float:none;
+	font-size:12px;
 }
 #title {
 	margin:23px 0 18px 0;
@@ -754,4 +659,8 @@ a:hover {
 #Header a span {
 	display: block;
 
+}
+.nothumb {
+	color:#555;
+	margin-left: 10px;
 }

@@ -1,7 +1,66 @@
 <?php
 function themeConfig($form) {
+    echo('<p style="margin-bottom:14px;font-size:13px;text-align:center;">感谢您使用DNSHH主题V1.2版本！此版本更新日期：2013-03-09（<a href="http://ben-lab.com" target="_blank">检查更新</a>） 如果您喜欢这款主题，请<a href="https://me.alipay.com/donateben" target="_blank">捐助</a>我，您的支持是我最大的动力！</p>');
+
+    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, NULL, _t('LOGO地址'), _t('在这里填入一个图片URL地址, 博客头部将显示一个LOGO；留空则以文字形式显示网站标题'));
+    $form->addInput($logoUrl);
+
+    $menuDisplay = new Typecho_Widget_Helper_Form_Element_Radio('menuDisplay', 
+    array(
+        'cat' => _t('分类目录'),  
+        'page' => _t('独立页面')
+        ), 
+    'page', 
+    _t('导航栏输出'));
+    $form->addInput($menuDisplay);
+
+    $thumbDisplay = new Typecho_Widget_Helper_Form_Element_Radio('thumbDisplay', 
+    array(
+        'display' => _t('启用'),  
+        'close' => _t('禁用')
+        ), 
+    'display', 
+    _t('略缩图显示'),_t('SAE或BAE等不兼容timthumb的用户请禁用此功能；禁用后可删除Thumbnail插件'));
+    $form->addInput($thumbDisplay);
+
+    $textDisplay = new Typecho_Widget_Helper_Form_Element_Radio('textDisplay', 
+    array(
+        'text' => _t('纯文本'),
+        'html' => _t('包含HTML格式')
+        ), 
+    'text', 
+    _t('摘要输出'),_t('若选择包含HTML格式则会自动禁用略缩图的显示，并且需要自行用more标签截断摘要'));
+    $form->addInput($textDisplay);
+
+    $copyDisplay = new Typecho_Widget_Helper_Form_Element_Radio('copyDisplay', 
+    array(
+        'display' => _t('显示'),  
+        'close' => _t('不显示')
+        ), 
+    'display', 
+    _t('文章版权信息'));
+    $form->addInput($copyDisplay);
+
+    $shareDisplay = new Typecho_Widget_Helper_Form_Element_Radio('shareDisplay', 
+    array(
+        'display' => _t('显示'),  
+        'close' => _t('不显示')
+        ), 
+    'display', 
+    _t('百度分享'),_t('若选择不显示则可以无视下面的百度分享id设置'));
+    $form->addInput($shareDisplay);
+
     $shareid = new Typecho_Widget_Helper_Form_Element_Text('shareid', NULL, '190950', _t('百度分享id'), _t('请输入您的百度分享id'));
     $form->addInput($shareid);
+
+    $pnDisplay = new Typecho_Widget_Helper_Form_Element_Radio('pnDisplay', 
+    array(
+        'display' => _t('显示'),  
+        'close' => _t('不显示')
+        ), 
+    'display', 
+    _t('前后文章'));
+    $form->addInput($pnDisplay);
 
     $setadmin = new Typecho_Widget_Helper_Form_Element_Textarea('setadmin', NULL, "admin@example.com\nadmin@model.com", _t('博主邮箱'), _t('在这里输入邮箱，一行一个，博主的评论头像隔壁会出现黄V认证'));
     $form->addInput($setadmin);
@@ -13,29 +72,6 @@ function themeConfig($form) {
     $form->addInput($setstar);
   }
 
-//获得读者墙
-function getFriendWall()
-{
-    $db = Typecho_Db::get();
-    $sql = $db->select('COUNT(author) AS cnt', 'author', 'url', 'mail')
-              ->from('table.comments')
-              ->where('status = ?', 'approved')
-              ->where('type = ?', 'comment')
-              ->where('authorId = ?', '0')
-              ->where('mail != ?', 'admin@ben-lab.com')   //排除自己上墙
-              ->group('author')
-              ->order('cnt', Typecho_Db::SORT_DESC)
-              ->limit('15');    //读取几位用户的信息
-    $result = $db->fetchAll($sql);
- 
-    if (count($result) > 0) {
-        $maxNum = $result[0]['cnt'];
-        foreach ($result as $value) {
-            $mostactive .= '<li><a target="_blank" rel="nofollow" href="' . $value['url'] . '"><span class="pic" style="background: url(http://1.gravatar.com/avatar/'.md5(strtolower($value['mail'])).'?s=36&d=&r=G) no-repeat; "></span><em>' . $value['author'] . '</em><strong>+' . $value['cnt'] . '</strong><br />' . $value['url'] . '</a></li>';    
-        }
-        echo $mostactive;
-    }
-}
 /**
  * 评论者认证
  *

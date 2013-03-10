@@ -7,6 +7,11 @@
       </blockquote>
     </div>
 </div>
+<?php if ($this->is('post')or$this->is('page')) : ?>
+	<script src="<?php $this->options->themeUrl(); ?>js/post.js"></script>
+<?php else: ?>
+    <script src="<?php $this->options->themeUrl(); ?>index_ajax_navi.js"></script>
+<?php endif ?>
  <script src="<?php $this->options->themeUrl(); ?>js/bootstrap.js"></script>
  <script src="<?php $this->options->themeUrl(); ?>js/bootstrap-alert.js"></script>
 <script type="text/javascript">
@@ -17,12 +22,6 @@ function() {$(this).fadeTo("fast", 1.1);
 });
 });
 $(document).ready(function() {
-$('h3 a').click(function(){
-myloadoriginal = this.text;
-$(this).text('请稍等，正在努力加载中...');
-var myload = this;
-setTimeout(function() { $(myload).text(myloadoriginal); }, 2011);
-});
 $(".post p:has(img)").css("text-indent","0");
 });
 </script>
