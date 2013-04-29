@@ -34,6 +34,11 @@ function optionsframework_options() {
 		'type' => 'heading');
 	
 	$options[] = array(
+		'name' => __('DNSHH主题', 'options_framework_theme'),
+		'desc' => __('<p style="font-size:13px;">感谢您使用DNSHH主题V1.2版本！此版本更新日期：2013-03-09（<a href="http://ben-lab.com" target="_blank">检查更新</a>） 如果您喜欢这款主题，请<a href="https://me.alipay.com/donateben" target="_blank">捐助</a>我，您的支持是我最大的动力！</p>', 'options_framework_theme'),
+		'type' => 'info');
+
+	$options[] = array(
 		'name' => __('LOGO地址', 'options_framework_theme'),
 		'desc' => __('在这里填入一个图片URL地址, 博客头部将显示一个LOGO；留空则以文字形式显示网站标题', 'options_framework_theme'),
 		'id' => 'logoUrl',

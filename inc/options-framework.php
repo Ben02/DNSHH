@@ -254,8 +254,8 @@ function optionsframework_page() {
 			</div>
 			</form>
 		</div> <!-- / #container -->
-	</div>
 	<?php do_action( 'optionsframework_after' ); ?>
+	</div>
 	</div> <!-- / .wrap -->
 	
 <?php
