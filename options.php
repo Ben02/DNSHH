@@ -41,13 +41,13 @@ function optionsframework_options() {
 	$options[] = array(
 		'name' => __('LOGO地址', 'options_framework_theme'),
 		'desc' => __('在这里填入一个图片URL地址, 博客头部将显示一个LOGO；留空则以文字形式显示网站标题', 'options_framework_theme'),
-		'id' => 'logoUrl',
+		'id' => 'logourl',
 		'std' => '',
 		'type' => 'text');
 
 	$options[] = array(
 		'name' => __('导航栏输出', 'options_framework_theme'),
-		'id' => 'menuDisplay',
+		'id' => 'menudisplay',
 		'std' => 'page',
 		'type' => 'radio',
 		'options' => array(
@@ -58,7 +58,7 @@ function optionsframework_options() {
 	$options[] = array(
 		'name' => __('略缩图显示', 'options_framework_theme'),
 		'desc' => __('SAE或BAE等不兼容timthumb的用户请禁用此功能；禁用后可删除Thumbnail插件','options_framework_theme'),
-		'id' => 'thumbDisplay',
+		'id' => 'thumbdisplay',
 		'std' => 'display',
 		'type' => 'radio',
 		'options' => array(
@@ -69,7 +69,7 @@ function optionsframework_options() {
 	$options[] = array(
 		'name' => __('摘要输出', 'options_framework_theme'),
 		'desc' => __('若选择包含HTML格式则会自动禁用略缩图的显示，并且需要自行用more标签截断摘要','options_framework_theme'),
-		'id' => 'textDisplay',
+		'id' => 'textdisplay',
 		'std' => 'text',
 		'type' => 'radio',
 		'options' => array(
@@ -79,7 +79,7 @@ function optionsframework_options() {
 
 	$options[] = array(
 		'name' => __('文章版权信息', 'options_framework_theme'),
-		'id' => 'copyDisplay',
+		'id' => 'copydisplay',
 		'std' => 'display',
 		'type' => 'radio',
 		'options' => array(
@@ -90,7 +90,7 @@ function optionsframework_options() {
 	$options[] = array(
 		'name' => __('百度分享', 'options_framework_theme'),
 		'desc' => __('若选择不显示则可以无视下面的百度分享id设置', 'options_framework_theme'),
-		'id' => 'shareDisplay',
+		'id' => 'sharedisplay',
 		'std' => 'display',
 		'type' => 'radio',
 		'options' => array(
@@ -107,7 +107,7 @@ function optionsframework_options() {
 
 	$options[] = array(
 		'name' => __('前后文章', 'options_framework_theme'),
-		'id' => 'pnDisplay',
+		'id' => 'pndisplay',
 		'std' => 'display',
 		'type' => 'radio',
 		'options' => array(

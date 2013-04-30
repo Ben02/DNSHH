@@ -170,7 +170,7 @@ function optionsframework_setdefaults() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 	function optionsframework_add_page() {
-		$of_page = add_theme_page( __('DNSHH主题设置', 'options_framework_theme'), __('DNSHH主题设置', 'options_framework_theme'), 'edit_theme_options', 'options-framework','optionsframework_page' );
+		$of_page = add_theme_page( __('Theme Options', 'options_framework_theme'), __('Theme Options', 'options_framework_theme'), 'edit_theme_options', 'options-framework','optionsframework_page' );
 
 		// Load the required CSS and javscript
 		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts' );
@@ -248,14 +248,14 @@ function optionsframework_page() {
 			<?php settings_fields( 'optionsframework' ); ?>
 			<?php optionsframework_fields(); /* Settings */ ?>
 			<div id="optionsframework-submit">
-				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( '保存设置', 'options_framework_theme' ); ?>" />
-				<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( '还原默认设置', 'options_framework_theme' ); ?>" onclick="return confirm( '<?php print esc_js( __( '您真的要还原默认设置吗？', 'options_framework_theme' ) ); ?>' );" />
+				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'options_framework_theme' ); ?>" />
+				<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'options_framework_theme' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'options_framework_theme' ) ); ?>' );" />
 				<div class="clear"></div>
 			</div>
 			</form>
 		</div> <!-- / #container -->
-	<?php do_action( 'optionsframework_after' ); ?>
 	</div>
+	<?php do_action( 'optionsframework_after' ); ?>
 	</div> <!-- / .wrap -->
 	
 <?php
@@ -281,7 +281,7 @@ function optionsframework_validate( $input ) {
 	 */
 
 	if ( isset( $_POST['reset'] ) ) {
-		add_settings_error( 'options-framework', 'restore_defaults', __( '已经还原为默认设置。', 'options_framework_theme' ), 'updated fade' );
+		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options_framework_theme' ), 'updated fade' );
 		return of_get_default_values();
 	}
 	
@@ -464,7 +464,6 @@ if ( ! function_exists( 'of_get_option' ) ) {
 		if ( isset( $options[$name] ) ) {
 			return $options[$name];
 		}
-
 		return $default;
 	}
 }

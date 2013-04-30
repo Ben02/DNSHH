@@ -1,59 +1,7 @@
-<?php function threadedComments($comments, $singleCommentOptions) {
-    
-    $commentClass = '';
-    if ($comments->authorId) {
-        if ($comments->authorId == $comments->ownerId) {
-            $commentClass .= ' comment-by-author';
-        } else {
-            $commentClass .= ' comment-by-user';
-        }
-    } 
-    
-    $commentLevelClass = $comments->_levels > 0 ? ' comment-child' : ' comment-parent';
-?>
-
-<?php commentApprove($comments, $comments->mail, $comments); ?><li id="<?php $comments->theId(); ?>" class="comment-body<?php
-    if ($comments->levels > 0) {
-        echo ' comment-child';
-        $comments->levelsAlt(' comment-level-odd', ' comment-level-even');
-    } else {
-        echo ' comment-parent';
-    }
-    $comments->alt(' comment-odd', ' comment-even');
-    echo $commentClass;
-?>">
-    <div class="comment-author">
-        <?php $comments->gravatar($singleCommentOptions->avatarSize,"http://ww1.sinaimg.cn/large/67252e9ajw1dqn0haiinwj.jpg");?> 
-    </div>
-    <div class="comment-meta">
-       <cite class="fn"><?php $singleCommentOptions->beforeAuthor();
-                $comments->author();$singleCommentOptions->afterAuthor();  ?></cite>
-                
-                <span class="commentdate"><a href="<?php $comments->permalink(); ?>"><?php $singleCommentOptions->beforeDate();
-                $comments->date($singleCommentOptions->dateFormat);
-                $singleCommentOptions->afterDate(); ?></a></span><span class="comment-reply"><?php $comments->reply($singleCommentOptions->replyWord); ?></span>
-    </div>
-    <div class="comment-p">
-        <?php $comments->content();?>
-    </div>
-    <?php if ($comments->children) { ?>
-    <div class="comment-children">
-        <?php $comments->threadedComments($singleCommentOptions);?>
-    </div>
-    <?php } ?>
-</li>
-
-<?php
-}
-?>
-
-
-
 <div id="comments">
-            <?php $this->comments()->to($comments); ?>
-            <?php $this->commentsNum(_t(''), _t('<h3>仅有一条评论</h3>'), _t('<h3>已有 %d 条评论</h3>')); ?>
-            <?php $comments->pageNav(); ?>
-            <?php $comments->listComments(); ?>
+            <?php comments_number('','<h3>仅有一条评论</h3>','<h3>已有 %d 条评论</h3>'); ?>
+            <?php paginate_comments_links('prev_text=上一页&next_text=下一页'); ?>
+            <?php wp_list_comments(); ?>
 
             <div class="comment-box">
             <?php if($this->allow('comment')): ?>

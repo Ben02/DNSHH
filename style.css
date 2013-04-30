@@ -648,7 +648,8 @@ a:hover {
 	font-size:12px;
 }
 .breadcrumb a {
-	padding:10px 12px;
+	padding:9px 12px;
+	/* Edit by m208, 与火狐兼容 */
 }
 .breadcrumb a:hover {
 	background-color:#eee;
