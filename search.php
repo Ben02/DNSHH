@@ -1,5 +1,5 @@
 <?php if(isset($_POST['action'])&& $_POST['action'] == 'index_ajax_navi'){
-  $this->need('index_list.php'); 
+  include(TEMPLATEPATH . 'index_list.php'); 
 }else{
   if(strpos($_SERVER["PHP_SELF"],"themes")) header('Location:/');
   $this->need('header.php'); ?>

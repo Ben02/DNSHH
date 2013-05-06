@@ -2,22 +2,38 @@
     <table class="table footer">
        <tbody>
         <tr><td style="padding-right: 15px!important;"><span>最近回复</span>    <ul>
-      <?php $this->widget('Widget_Comments_Recent')->to($comments); ?>
-            <?php while($comments->next()): ?>
-                <li><?php $comments->author(false); ?> : <a href="<?php $comments->permalink(); ?>"><?php $comments->excerpt(50, '...'); ?></a></li>
-            <?php endwhile; ?>
+	<?php $comments = get_comments( array ('number' => '5' ) );?>
+	<?php foreach ($comments as $comment) { ?>
+	<li><?php echo $comment->comment_author ?> : <a href="<?php echo get_comment_link( $comment->comment_ID )?>"><?php echo mb_substr($comment->comment_content,0,25,'utf-8');?></a></li>
+	<?php } ?>
     </ul> </td>
-    <td style="padding-right: 15px!important;"><?php if ($this->is('post')): //判断是否文章页?>
-  <?php $this->related(5)->to($relatedPosts); ?>
-    <?php if ($this->related(5)->have()): //如果有相关文章?><span>相关文章</span>
-          <ul>
-            <?php while ($relatedPosts->next()): ?>
-            <li><a href="<?php $relatedPosts->permalink(); ?>" title="<?php $relatedPosts->title(); ?>"><?php $relatedPosts->title(); ?></a></li>
-            <?php endwhile; ?>  
-          </ul>
+    <td style="padding-right: 15px!important;"><?php if (is_single()): //判断是否文章页?>
+  <?php 
+  global $post;
+   $post_author = get_the_author_meta( 'user_login' ); 
+     $args = array(
+        'author_name' => $post_author,
+        'post__not_in' => array($post->ID),
+        'showposts' => 5,               // 显示相关文章数量
+        'orderby' => date,          // 按时间排序
+        'caller_get_posts' => 1
+    );
+	query_posts($args);?>
+    <?php if (have_posts()) : //如果有相关文章?>
+	<ul>
+	<span>相关文章</span>
+	<?php while(have_posts()) { the_post(); update_post_caches($posts);?>
+			<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+	<?php } ?>
+	</ul>
+	<?php //} 
+	wp_reset_query();
+	?>
     <?php else: //没有相关文章输出最新文章?><span>最新文章</span>
           <ul>
-            <?php $this->widget('Widget_Contents_Post_Recent')->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
+            <?php foreach(get_posts() as $post) { ?>
+			<li><a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title ?></a></li>
+			<?php } ?>
           </ul> 
     <?php endif; ?>
 <?php else: //不是文章页就输出随机文章?><span>随机文章</span>

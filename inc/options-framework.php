@@ -461,7 +461,9 @@ if ( ! function_exists( 'of_get_option' ) ) {
 
 		$options = get_option( $config['id'] );
 
+
 		if ( isset( $options[$name] ) ) {
+			$options[$name] = str_replace("\r\n","\n",$options[$name]);
 			return $options[$name];
 		}
 		return $default;

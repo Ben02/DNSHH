@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
             _thisP = _this.parent();
         if(_thisP.hasClass('current') || ajaxed==true) return; // 判断是否是当前页面
         var _list = $('.comment-list'),
-            url = _this.attr("href").replace("#comments", "") + "?action=ajax_comments";
+            url = _this.attr("href").replace("#comments", "") + "&action=ajax_comments";
         $.ajax({ // Ajax请求
             url: url,
             beforeSend: function() {

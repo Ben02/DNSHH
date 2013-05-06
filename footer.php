@@ -1,5 +1,5 @@
 <div id="sidebar">
-	<?php //get_sidebar(); ?>
+	<?php get_sidebar(); ?>
 </div>
     <div id="copyr">      
       <blockquote class="pull-right">

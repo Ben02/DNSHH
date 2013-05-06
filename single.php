@@ -1,4 +1,11 @@
-<?php get_header(); ?>
+<?php 
+// 评论Ajax翻页 by 牧风
+
+if(isset($_GET["action"]) && $_GET["action"] == "ajax_comments"){// Ajax请求的头数据
+    comments_template();
+}else{
+	get_header();
+?>
 <?php while ( have_posts() ) : the_post(); ?>
 <div id="title"><a href="<?php echo $authordata->user_url; ?>" title="作者：<?php echo $authordata->display_name;?>"><?php echo get_avatar( get_the_author_email(), 48 ); ?></a>
 <h1><?php the_title() ?></h1>
@@ -59,6 +66,10 @@
 </span><?php } ?>
 <div style="clear:both"></div>
 </div>
+<div id="comments">
 		<?php comments_template(); ?>
+</div><!-- #comments .comments-area -->
+<div class="clear"></div>
 <?php get_footer(); ?>
-<?php endwhile; ?>
+<?php endwhile; 
+	}?>

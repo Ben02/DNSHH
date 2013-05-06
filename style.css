@@ -475,7 +475,7 @@ ol.comment-list li .comment-reply a {
 	border:none;
 	color:#aaa;
 }
-.comment-children {
+.comment-list .children {
 	padding-left:64px;
 	background:url(img/menu-current.png) no-repeat 11px -17px;
 }

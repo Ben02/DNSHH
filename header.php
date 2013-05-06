@@ -15,7 +15,7 @@
     <script type="text/javascript">
   jQuery(function() {          
       jQuery("img").not("#respond_box img").lazyload({
-          placeholder:"<?php bloginfo('template_url'); ?>lazyload/loading.gif",
+          placeholder:"<?php bloginfo('template_url'); ?>/lazyload/loading.gif",
             effect:"fadeIn"
           });
       });

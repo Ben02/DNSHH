@@ -1,6 +1,6 @@
 <?php 
  if(isset($_POST['action'])&& $_POST['action'] == 'index_ajax_navi'){
-  include('index_list.php'); 
+  include(TEMPLATEPATH . '/index_list.php'); 
 }
 else
 {
@@ -9,9 +9,9 @@ else
 	  header('Location:/');
 	  }
   get_header();
-  }
 ?>
  <div id="content">
- <?php include('index_list.php'); ?>
+ <?php include(TEMPLATEPATH . '/index_list.php'); ?>
 </div>
-<?php get_footer(); ?>
+<?php get_footer(); 
+  } ?>

@@ -28,4 +28,4 @@
 <?php endwhile; ?>
       </tbody>
     </table>
-<?php wp_pagenavi(); ?>
+<?php par_pagenavi(6); ?>
