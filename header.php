@@ -8,7 +8,7 @@
     <link rel="canonical" href="<?php get_permalink() ?>" />
     <?php endif; ?>
     <link rel="stylesheet" type="text/css" href=" <?php echo get_stylesheet_uri();?>">
-    <link rel="stylesheet" type="text/css" href=" <?php bloginfo('template_url'); ?> /bootstarp.css">
+    <link rel="stylesheet" type="text/css" href=" <?php bloginfo('template_url'); ?>/bootstarp.css">
     <?php wp_head(); ?>
     <script src="<?php bloginfo('template_url'); ?>/js/jquery.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/lazyload/lazyload.js"></script>
