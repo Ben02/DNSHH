@@ -22,8 +22,12 @@ function catch_first_image() {global $post, $posts;$first_img = '';
 	$first_img = $matches [1] [0];
 	if(empty($first_img)){
 		$first_img = bloginfo('template_url'). '/thumb/default.png';
-		}
-  return $first_img;
+		return $first_img;
+	}
+	else
+	{
+  	return bloginfo('template_url'). '/thumb/timthumb.php?src=' . $first_img . '&h=100&w=140&zc=1';
+	}
 };
 
 //中文截取
