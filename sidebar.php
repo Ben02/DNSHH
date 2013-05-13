@@ -42,6 +42,12 @@
           </ul>
      <?php endif; ?></td>
     <td  class="links"><span>友情链接</span>  <ul>  
+<!-- 
+修改友情链接方法：
+添加
+<li><a href="网站地址" title="网站作者（可选）" target="_blank">网站名称</a></li> 
+到</ul>的前面
+-->
 <li><a href="http://.com/" title="请到sidebar.php修改友情链接" target="_blank">请到sidebar.php修改友情链接</a></li>
 <li><a href="http://ben-lab.com/" title="Ben" target="_blank">Ben's Lab</a></li> 
 </ul></td></tr>
