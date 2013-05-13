@@ -36,24 +36,21 @@ function custom_excerpt_length( $length ) {
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
-//头像class更改
-function output_avatar($avatar,$id_or_email,$size,$default,$alt){
-	return str_replace("class='avatar","class='",$avatar);
-}
-add_filter('get_avatar','output_avatar',10,5);
-
 //输出头像地址
-function output_avatar_url($email){
-	$hash = md5( strtolower( trim ( $email ) ) );
-    return 'http://gravatar.com/avatar/' . $hash;
+function output_avatar_url($email,$size){
+	$email_hash = md5( strtolower( trim( $email ) ) );
+	if (!empty($size) ) $p = '?size=' . $size;
+	$dir = sprintf( "http://%d.gravatar.com/avatar/", ( hexdec( $email_hash[0] ) % 2 ) );
+    return $dir . $email_hash . $p;
 }
+
 //格式化评论
 function format_comments($comment,$args,$depth) { 
 	commentApprove($comment->comment_author_email); ?>
 	<li id="comment-<?php comment_ID() ?>" class="<?php if ($depth==1) echo 'comment-parent'; else echo 'comment-child'; ?>">
 	<?php if($comment->comment_author_email != '') { ?>
 	<div class="comment-author">
-	<img class="avatar" width="32" height="32" alt="<?php printf(__('$s'),get_comment_author_link()) ?>" src="<?php echo output_avatar_url($comment->comment_author_email) ?>">
+	<img class="avatar" width="32" height="32" alt="<?php printf(__('$s'),get_comment_author_link()) ?>" src="<?php echo output_avatar_url($comment->comment_author_email,32) ?>">
 	</div>
 	<?php } ?>
 	<div class="comment-meta">
