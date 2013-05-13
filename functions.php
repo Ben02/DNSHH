@@ -51,9 +51,11 @@ function output_avatar_url($email){
 function format_comments($comment,$args,$depth) { 
 	commentApprove($comment->comment_author_email); ?>
 	<li id="comment-<?php comment_ID() ?>" class="<?php if ($depth==1) echo 'comment-parent'; else echo 'comment-child'; ?>">
+	<?php if($comment->comment_author_email != '') { ?>
 	<div class="comment-author">
 	<img class="avatar" width="32" height="32" alt="<?php printf(__('$s'),get_comment_author_link()) ?>" src="<?php echo output_avatar_url($comment->comment_author_email) ?>">
 	</div>
+	<?php } ?>
 	<div class="comment-meta">
 	<cite class="fn">
 	<a target="_blank" rel="nofollow" href="<?php comment_author_url(); ?>"><?php echo $comment->comment_author ?></a>
