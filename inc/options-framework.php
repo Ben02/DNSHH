@@ -248,8 +248,8 @@ function optionsframework_page() {
 			<?php settings_fields( 'optionsframework' ); ?>
 			<?php optionsframework_fields(); /* Settings */ ?>
 			<div id="optionsframework-submit">
-				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'options_framework_theme' ); ?>" />
-				<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'options_framework_theme' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'options_framework_theme' ) ); ?>' );" />
+				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( '保存设置', 'options_framework_theme' ); ?>" />
+				<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( '还原默认设置', 'options_framework_theme' ); ?>" onclick="return confirm( '<?php print esc_js( __( '点击确定还原默认设置，这将丢失之前所做的更改！', 'options_framework_theme' ) ); ?>' );" />
 				<div class="clear"></div>
 			</div>
 			</form>
@@ -281,7 +281,7 @@ function optionsframework_validate( $input ) {
 	 */
 
 	if ( isset( $_POST['reset'] ) ) {
-		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options_framework_theme' ), 'updated fade' );
+		add_settings_error( 'options-framework', 'restore_defaults', __( '已经还原为默认设置。', 'options_framework_theme' ), 'updated fade' );
 		return of_get_default_values();
 	}
 	
@@ -335,7 +335,7 @@ function optionsframework_validate( $input ) {
  */
  
 function optionsframework_save_options_notice() {
-	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options_framework_theme' ), 'updated fade' );
+	add_settings_error( 'options-framework', 'save_options', __( '设置已保存。', 'options_framework_theme' ), 'updated fade' );
 }
 
 add_action( 'optionsframework_after_validate', 'optionsframework_save_options_notice' );
