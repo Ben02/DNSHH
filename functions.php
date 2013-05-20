@@ -69,7 +69,8 @@ function format_comments($comment,$args,$depth) {
 	</span>
 	</div>
 	<div class="comment-p">
-	<p><?php echo $comment->comment_content ?></p>
+	<p><?php //echo $comment->comment_content
+	var_dump($comment)?></p>
 	</div>
 <?php } 
 
