@@ -39,9 +39,9 @@ add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 //输出头像地址
 function output_avatar_url($email,$size){
 	$email_hash = md5( strtolower( trim( $email ) ) );
-	if (!empty($size) ) $p = '?size=' . $size;
+	if (!empty($size) ) $p = '&size=' . $size;
 	$dir = sprintf( "http://%d.gravatar.com/avatar/", ( hexdec( $email_hash[0] ) % 2 ) );
-    return $dir . $email_hash . $p;
+    return $dir . $email_hash . '?d=http://ww1.sinaimg.cn/large/67252e9ajw1dqn0haiinwj.jpg' . $p;
 }
 
 //格式化评论
@@ -50,12 +50,16 @@ function format_comments($comment,$args,$depth) {
 	<li id="comment-<?php comment_ID() ?>" class="<?php if ($depth==1) echo 'comment-parent'; else echo 'comment-child'; ?>">
 	<?php if($comment->comment_type == "") { ?>
 	<div class="comment-author">
-	<img class="avatar" width="32" height="32" alt="<?php printf(__('$s'),get_comment_author_link()) ?>" src="<?php echo output_avatar_url($comment->comment_author_email,32) ?>">
+	<img class="avatar" width="32" height="32" alt="<?php echo $comment->comment_author ?>" src="<?php echo output_avatar_url($comment->comment_author_email,32) ?>">
 	</div>
 	<?php } ?>
 	<div class="comment-meta">
 	<cite class="fn">
-	<a target="_blank" rel="nofollow" href="<?php comment_author_url(); ?>"><?php echo $comment->comment_author ?></a>
+	<?php if($comment->comment_author_url != '') { ?>
+	<a target="_blank" rel="nofollow" href="<?php echo $comment->comment_author_url ?>"><?php echo $comment->comment_author ?></a>
+	<?php } else { 
+	echo $comment->comment_author;
+	} ?>
 	</cite>
 	<span class="commentdate">
 	[ <a href="<?php echo get_comment_link( $comment->comment_ID )  ?>"><?php echo $comment->comment_date ?></a> ] 
