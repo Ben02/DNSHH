@@ -1,3 +1,12 @@
+/*
+Theme Name: DNSHH
+Theme URI: http://ben-lab.com/typecho/1805.html
+Description: 主题特色：小清新，单栏，简洁，蓝白。
+Version: 1.2
+Author: Ben
+Author URI: http://ben-lab.com
+Tags: 小清新,单栏,简洁,蓝白
+*/
 /*-------------------------
 
     CSS by Ben-Lab.com
@@ -466,7 +475,7 @@ ol.comment-list li .comment-reply a {
 	border:none;
 	color:#aaa;
 }
-.comment-children {
+.comment-list .children {
 	padding-left:64px;
 	background:url(img/menu-current.png) no-repeat 11px -17px;
 }
@@ -639,7 +648,8 @@ a:hover {
 	font-size:12px;
 }
 .breadcrumb a {
-	padding:10px 12px;
+	padding:9px 12px;
+	/* Edit by m208, 与火狐兼容 */
 }
 .breadcrumb a:hover {
 	background-color:#eee;

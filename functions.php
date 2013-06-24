@@ -1,76 +1,77 @@
 <?php
-function themeConfig($form) {
-    echo('<p style="margin-bottom:14px;font-size:13px;text-align:center;">感谢您使用DNSHH主题V1.2版本！此版本更新日期：2013-03-09（<a href="http://ben-lab.com" target="_blank">检查更新</a>） 如果您喜欢这款主题，请<a href="https://me.alipay.com/donateben" target="_blank">捐助</a>我，您的支持是我最大的动力！</p>');
 
-    $logoUrl = new Typecho_Widget_Helper_Form_Element_Text('logoUrl', NULL, NULL, _t('LOGO地址'), _t('在这里填入一个图片URL地址, 博客头部将显示一个LOGO；留空则以文字形式显示网站标题'));
-    $form->addInput($logoUrl);
+/* 
+ * Loads the Options Panel
+ *
+ * If you're loading from a child theme use stylesheet_directory
+ * instead of template_directory
+ */
+if ( !function_exists( 'optionsframework_init' ) ) {
+	define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/' );
+	require_once dirname( __FILE__ ) . '/inc/options-framework.php';
+}
 
-    $menuDisplay = new Typecho_Widget_Helper_Form_Element_Radio('menuDisplay', 
-    array(
-        'cat' => _t('分类目录'),  
-        'page' => _t('独立页面')
-        ), 
-    'page', 
-    _t('导航栏输出'));
-    $form->addInput($menuDisplay);
+//支持外链缩略图
+if ( function_exists('add_theme_support') )
+ add_theme_support('post-thumbnails');
+ set_post_thumbnail_size( 140, 100, true );
+function catch_first_image() {global $post, $posts;$first_img = '';
+	ob_start();
+	ob_end_clean();
+	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	$first_img = $matches [1] [0];
+	if(empty($first_img)){
+		$first_img = bloginfo('template_url'). '/thumb/default.png';
+		return $first_img;
+	}
+	else
+	{
+  	return bloginfo('template_url'). '/thumb/timthumb.php?src=' . $first_img . '&h=100&w=140&zc=1';
+	}
+};
 
-    $thumbDisplay = new Typecho_Widget_Helper_Form_Element_Radio('thumbDisplay', 
-    array(
-        'display' => _t('启用'),  
-        'close' => _t('禁用')
-        ), 
-    'display', 
-    _t('略缩图显示'),_t('SAE或BAE等不兼容timthumb的用户请禁用此功能；禁用后可删除Thumbnail插件'));
-    $form->addInput($thumbDisplay);
+//中文截取
+function custom_excerpt_length( $length ) {
+	return 400;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
-    $textDisplay = new Typecho_Widget_Helper_Form_Element_Radio('textDisplay', 
-    array(
-        'text' => _t('纯文本'),
-        'html' => _t('包含HTML格式')
-        ), 
-    'text', 
-    _t('摘要输出'),_t('若选择包含HTML格式则会自动禁用略缩图的显示，并且需要自行用more标签截断摘要'));
-    $form->addInput($textDisplay);
+//输出头像地址
+function output_avatar_url($email,$size){
+	$email_hash = md5( strtolower( trim( $email ) ) );
+	if (!empty($size) ) $p = '&size=' . $size;
+	$dir = sprintf( "http://%d.gravatar.com/avatar/", ( hexdec( $email_hash[0] ) % 2 ) );
+    return $dir . $email_hash . '?d=http://ww1.sinaimg.cn/large/67252e9ajw1dqn0haiinwj.jpg' . $p;
+}
 
-    $copyDisplay = new Typecho_Widget_Helper_Form_Element_Radio('copyDisplay', 
-    array(
-        'display' => _t('显示'),  
-        'close' => _t('不显示')
-        ), 
-    'display', 
-    _t('文章版权信息'));
-    $form->addInput($copyDisplay);
-
-    $shareDisplay = new Typecho_Widget_Helper_Form_Element_Radio('shareDisplay', 
-    array(
-        'display' => _t('显示'),  
-        'close' => _t('不显示')
-        ), 
-    'display', 
-    _t('百度分享'),_t('若选择不显示则可以无视下面的百度分享id设置'));
-    $form->addInput($shareDisplay);
-
-    $shareid = new Typecho_Widget_Helper_Form_Element_Text('shareid', NULL, '190950', _t('百度分享id'), _t('请输入您的百度分享id'));
-    $form->addInput($shareid);
-
-    $pnDisplay = new Typecho_Widget_Helper_Form_Element_Radio('pnDisplay', 
-    array(
-        'display' => _t('显示'),  
-        'close' => _t('不显示')
-        ), 
-    'display', 
-    _t('前后文章'));
-    $form->addInput($pnDisplay);
-
-    $setadmin = new Typecho_Widget_Helper_Form_Element_Textarea('setadmin', NULL, "admin@example.com\nadmin@model.com", _t('博主邮箱'), _t('在这里输入邮箱，一行一个，博主的评论头像隔壁会出现黄V认证'));
-    $form->addInput($setadmin);
-
-    $setvip = new Typecho_Widget_Helper_Form_Element_Textarea('setvip', NULL, "vip@example.com\nvip@model.com", _t('认证贵宾'), _t('在这里输入邮箱，一行一个，邮箱拥有者的评论头像隔壁会出现蓝V认证'));
-    $form->addInput($setvip);
-
-    $setstar = new Typecho_Widget_Helper_Form_Element_Textarea('setstar', NULL, "water@example.com\nstar@model.com", _t('灌水达人'), _t('在这里输入邮箱，一行一个，邮箱拥有者的评论头像隔壁会出现红星认证'));
-    $form->addInput($setstar);
-  }
+//格式化评论
+function format_comments($comment,$args,$depth) { 
+	commentApprove($comment->comment_author_email); ?>
+	<li id="comment-<?php comment_ID() ?>" class="<?php if ($depth==1) echo 'comment-parent'; else echo 'comment-child'; ?>">
+	<?php if($comment->comment_type == "") { ?>
+	<div class="comment-author">
+	<img class="avatar" width="32" height="32" alt="<?php echo $comment->comment_author ?>" src="<?php echo output_avatar_url($comment->comment_author_email,32) ?>">
+	</div>
+	<?php } ?>
+	<div class="comment-meta">
+	<cite class="fn">
+	<?php if($comment->comment_author_url != '') { ?>
+	<a target="_blank" rel="nofollow" href="<?php echo $comment->comment_author_url ?>"><?php echo $comment->comment_author ?></a>
+	<?php } else { 
+	echo $comment->comment_author;
+	} ?>
+	</cite>
+	<span class="commentdate">
+	[ <a href="<?php echo get_comment_link( $comment->comment_ID )  ?>"><?php echo $comment->comment_date ?></a> ] 
+	</span>
+	<span class="comment-reply">
+	<?php comment_reply_link( array_merge( $args, array( 'reply_text' => '回复' , 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+	</span>
+	</div>
+	<div class="comment-p">
+	<p><?php echo $comment->comment_content ?></p>
+	</div>
+<?php } 
 
 /**
  * 评论者认证
@@ -80,15 +81,15 @@ function themeConfig($form) {
  * @param str $email 评论者邮址
  * @return viod 
  */
-function commentApprove($widget, $email = NULL, $set)
+function commentApprove($email = NULL)
 {
     if (empty($email)) return;
  
-$getvip = $set->widget('Widget_Options')->setvip;
+$getvip = of_get_option('setvip');
 $setvip = explode("\n", $getvip);
-$getadmin = $set->widget('Widget_Options')->setadmin;
+$getadmin = of_get_option('setadmin');
 $setadmin = explode("\n", $getadmin);
-$getstar = $set->widget('Widget_Options')->setstar;
+$getstar = of_get_option('setstar');
 $setstar = explode("\n", $getstar);
 
     if (in_array($email, $setadmin)) {
@@ -100,27 +101,118 @@ $setstar = explode("\n", $getstar);
     }
 }
 //随机文章
-    function theme_random_posts(){ 
-        $defaults = array( 
-            'number' => 5, 
-            'before' => '<ul class="list">', 
-            'after' => '</ul>', 
-            'xformat' => '<li><a href="{permalink}">{title}</a></li>' 
-        ); 
-        $db = Typecho_Db::get(); 
+function theme_random_posts() {
+	 $rand_posts = get_posts('numberposts=5&orderby=rand');  foreach( $rand_posts as $post ) { ?>
+	 <li><a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title ?></a></li>
+	 <?php }
+}
+//文章分页
+function par_pagenavi($range = 9){ ?>
+<ol class="page-navigator">
+	<ol class="page-navigator">
+	<?php 
+	global $paged, $wp_query;
+	if ( !$max_page ) { $max_page = $wp_query->max_num_pages; }
+	if  ($max_page > 1 ) {
+		if(!$paged){
+			$paged = 1;
+		} 
+		if($paged != 1) { ?>
+		<li><a href="<?php previous_posts( false ) ?>" class="prev">上一页</a></li>
+		<?php } 
+		if($max_page > $range){
+			if($paged < $range) { for($i = 1; $i <= ($range + 1); $i++)
+				{
+					echo "<li";
+					if($i==$paged) echo " class='current'";
+					echo"><a href='" . get_pagenum_link($i) ."'";
+					echo ">$i</a></li>";
+					}
+				}
+			elseif($paged >= ($max_page - ceil(($range/2))))
+				{
+				for($i = $max_page - $range; $i <= $max_page; $i++)
+					{echo "<li";
+					if($i==$paged)echo " class='current'";
+					echo"><a href='" . get_pagenum_link($i) ."'";
+					echo ">$i</a></li>";
+					}
+				}
+			elseif($paged >= $range && $paged < ($max_page - ceil(($range/2)))){
+				for($i = ($paged - ceil($range/2)); $i <= ($paged + ceil(($range/2))); $i++)
+					{
+					echo "<li";
+					if($i==$paged) echo " class='current'";
+					echo "><a href='" . get_pagenum_link($i) ."'";echo ">$i</a></li>";
+					}
+				}
+			}
+		else{
+			for($i = 1; $i <= $max_page; $i++)
+				{
+				echo "<li";
+				if($i==$paged)echo " class='current'";
+				echo "><a href='" . get_pagenum_link($i) ."'";
+				echo ">$i</a></li>";
+				}
+			} 
+			if($paged != $max_page) { ?>
+			<li><a href="<?php next_posts( $max_page, true ) ?>" class="next">下一页</a></li>
+			<?php } ?>
+		<?php } ?>
+	</ol>
+</ol>
+	<?php } 
 
-        $sql = $db->select()->from('table.contents') 
-            ->where('status = ?','publish') 
-            ->where('type = ?', 'post') 
-            ->limit($defaults['number']) 
-            ->order('RAND()'); 
-         
-        $result = $db->fetchAll($sql); 
-        echo $defaults['before']; 
-        foreach($result as $val){ 
-            $val = Typecho_Widget::widget('Widget_Abstract_Contents')->filter($val); 
-            echo str_replace(array('{permalink}', '{title}'),array($val['permalink'], $val['title']), $defaults['xformat']); 
-        } 
-        echo $defaults['after']; 
-    }
-?>
+//get_comments_pagenum_link
+function comments_pagenavi($range = 5){ ?>
+	<ol class="page-navigator">
+	<?php 
+	if ( !$max_comment_page ) { $max_comment_page = get_comment_pages_count(); }
+	if  ($max_comment_page > 1 ) {
+		$cpaged = get_query_var('cpage');
+		if($cpaged != 1) { ?>
+		<li><a href="<?php echo esc_url( get_comments_pagenum_link( $cpaged - 1 ) ) ?>" class="prev">上一页</a></li>
+		<?php } 
+		if($max_comment_page > $range){
+			if($cpaged < $range) { for($i = 1; $i <= ($range + 1); $i++)
+				{
+					echo "<li";
+					if($i==$cpaged) echo " class='current'";
+					echo"><a href='" . get_comments_pagenum_link($i) ."'";
+					echo ">$i</a></li>";
+					}
+				}
+			elseif($cpaged >= ($max_comment_page - ceil(($range/2))))
+				{
+				for($i = $max_comment_page - $range; $i <= $max_comment_page; $i++)
+					{echo "<li";
+					if($i==$cpaged)echo " class='current'";
+					echo"><a href='" . get_comments_pagenum_link($i) ."'";
+					echo ">$i</a></li>";
+					}
+				}
+			elseif($cpaged >= $range && $cpaged < ($max_comment_page - ceil(($range/2)))){
+				for($i = ($cpaged - ceil($range/2)); $i <= ($cpaged + ceil(($range/2))); $i++)
+					{
+					echo "<li";
+					if($i==$cpaged) echo " class='current'";
+					echo "><a href='" . get_comments_pagenum_link($i) ."'";echo ">$i</a></li>";
+					}
+				}
+			}
+		else{
+			for($i = 1; $i <= $max_comment_page; $i++)
+				{
+				echo "<li";
+				if($i==$cpaged)echo " class='current'";
+				echo "><a href='" . get_comments_pagenum_link($i) ."'";
+				echo ">$i</a></li>";
+				}
+			} 
+			if($cpaged != $max_comment_page) { ?>
+			<li><a href="<?php echo esc_url( get_comments_pagenum_link($cpaged + 1) ) ?>" class="next">下一页</a></li>
+			<?php } ?>
+		<?php } ?>
+	</ol>
+	<?php } 

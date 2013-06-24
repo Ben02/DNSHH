@@ -1,21 +1,22 @@
-<?php
-/**
- * 主题特色：小清新，单栏，简洁，蓝白。
- * 
- * @package DNSHH
- * @author Ben
- * @version 1.2
- * @link http://me.ben-lab.com
- */
- 
+<?php 
  if(isset($_POST['action'])&& $_POST['action'] == 'index_ajax_navi'){
-  $this->need('index_list.php'); 
-}else{
-  if(strpos($_SERVER["PHP_SELF"],"themes")) header('Location:/');
-  $this->need('header.php');
- ?>
+  include(TEMPLATEPATH . '/index_list.php'); 
+}
+else
+{
+  if(strpos($_SERVER["PHP_SELF"],"themes"))
+	  {
+	  header('Location:/');
+	  }
+  get_header();
+?>
+<?php if(is_category()) { ?>
+<div class="alert alert-info"><h4><?php echo single_cat_title(); ?></h4></div>
+<?php } elseif (is_tag()) { ?>
+<div class="alert alert-info"><h4><?php echo single_tag_title('', true); ?></h4></div>
+<?php } ?>
  <div id="content">
- <?php $this->need('index_list.php'); ?>
+ <?php include(TEMPLATEPATH . '/index_list.php'); ?>
 </div>
-<?php $this->need('footer.php'); ?>
-<?php }?>
+<?php get_footer(); 
+  } ?>

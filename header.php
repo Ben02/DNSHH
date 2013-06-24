@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-  	<meta http-equiv="content-type" content="text/html; charset=<?php $this->options->charset(); ?>" />
+  	<meta http-equiv="content-type" content="text/html; charset=<?php bloginfo('charset'); ?>" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php $this->archiveTitle(' &raquo; ', '', ' - '); ?><?php $this->options->title(); ?></title>
-    <?php if ($this->is('post')): ?>
-    <link rel="canonical" href="<?php $this->permalink() ?>" />
+    <title><?php wp_title('-',true,'right'); ?><?php bloginfo('name');?></title>
+    <?php if (is_single()): ?>
+    <link rel="canonical" href="<?php get_permalink() ?>" />
     <?php endif; ?>
-    <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl(); ?>style.css">
-    <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl(); ?>bootstarp.css">
-    <?php $this->header("generator=&template="); ?>
-    <script src="<?php $this->options->themeUrl(); ?>js/jquery.js"></script>
-    <script type="text/javascript" src="<?php $this->options->themeUrl(); ?>lazyload/lazyload.js"></script>
+    <link rel="stylesheet" type="text/css" href=" <?php echo get_stylesheet_uri();?>">
+    <link rel="stylesheet" type="text/css" href=" <?php bloginfo('template_url'); ?>/bootstarp.css">
+    <?php wp_head(); ?>
+    <script src="<?php bloginfo('template_url'); ?>/js/jquery.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/lazyload/lazyload.js"></script>
     <script type="text/javascript">
   jQuery(function() {          
       jQuery("img").not("#respond_box img").lazyload({
-          placeholder:"<?php $this->options->themeUrl(); ?>lazyload/loading.gif",
+          placeholder:"<?php bloginfo('template_url'); ?>/lazyload/loading.gif",
             effect:"fadeIn"
           });
       });
@@ -25,11 +25,11 @@
   <body>
   	<div id="Main">
 <div id="Header">
-  			<a href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title(); ?>">
-          <?php if ($this->options->logoUrl): ?>
-            <img src="<?php $this->options->logoUrl() ?>" alt="<?php $this->options->title() ?>" />
+  			<a href="<?php echo site_url(); ?>" title="<?php bloginfo('name') ?>">
+          <?php if (of_get_option('logourl','')): ?>
+            <img src="<?php echo of_get_option('logourl',''); ?>" alt="<?php bloginfo('name'); ?>" />
           <?php else : ?>
-            <span style="font-size:35px;margin-bottom: 13px;"><?php $this->options->title(); ?></span><span><?php $this->options->description() ?></span>
+            <span style="font-size:35px;margin-bottom: 13px;"><?php bloginfo('name'); ?></span><span><?php bloginfo('description') ?></span>
           <?php endif ?>
         </a>
 </div>
@@ -37,22 +37,16 @@
   	
 <div id="Center">
 <ul class="breadcrumb">
-  <li <?php if($this->is('index')): ?> class="current"<?php endif; ?><?php if ($this->is('post')): ?>class="active"<?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>">首页</a></li>
-  <?php if ($this->options->menuDisplay == 'page') { ?>
-				<?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-				<?php while($pages->next()): ?>
-				<li <?php if($this->is('page', $pages->slug)): ?> class="active"<?php endif; ?>><a href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a></li>
-				<?php endwhile; ?>
+  <li <?php if(is_home()): ?> class="current"<?php endif; ?><?php if (is_single()): ?>class="active"<?php endif; ?>><a href="<?php bloginfo('siteurl') ?>">首页</a></li>
+  <?php if (of_get_option('menudisplay','page') == 'page') { ?>
+			<?php wp_list_pages('depth=1&title_li=&sort_column=menu_order'); ?>
         <?php } ?>
-<?php if ($this->options->menuDisplay == 'cat') { ?>
-            <?php $this->widget('Widget_Metas_Category_List')->to($categories); ?>
-            <?php while($categories->next()): ?>
-                <li<?php if($this->is('category', $categories->slug)): ?> class="active"<?php endif; ?>><a href="<?php $categories->permalink(); ?>"><?php $categories->name(); ?></a></li>
-            <?php endwhile; ?>
-<?php } ?>
-				<li><a href="<?php $this->options->feedUrl(); ?>" class="menu-rss" target="_blank">订阅</a></li>
-<form  style="display:inline;" class="form-search" action="/search" method="get" >
-    <input  style="height:13px;width:120px;display:inline;color:#999;float:right" type="text" class="input-medium search-query"  name="s" value="回车以搜索..." onfocus="if (value =='回车以搜索...'){value =''}" onblur="if (value ==''){value='回车以搜索...'}" lang="zh-CN" >
+<?php if (of_get_option('menudisplay','page') == 'cat') { ?>
+            <?php wp_list_categories('depth=1&title_li=&show_count=0&hide_empty=0&child_of=0'); ?>
+		<?php } ?>
+				<li><a href="<?php bloginfo('rss2_url'); ?>" class="menu-rss" target="_blank">订阅</a></li>
+<form  style="display:inline;" class="form-search" action="<?php echo home_url( '/' )?>" method="get" >
+    <input  style="height:13px;width:120px;display:inline;color:#999;float:right" type="text" class="input-medium search-query"  name="s" value="回车以搜索..." name="s" onfocus="if (value =='回车以搜索...'){value =''}" onblur="if (value ==''){value='回车以搜索...'}" lang="zh-CN" >
     </form>
 </ul><div id="bottom-bar"></div>
 </div>
