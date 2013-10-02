@@ -20,8 +20,8 @@
     );
 	query_posts($args);?>
     <?php if (have_posts()) : //如果有相关文章?>
+    	<span>相关文章</span>
 	<ul>
-	<span>相关文章</span>
 	<?php while(have_posts()) { the_post(); update_post_caches($posts);?>
 			<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
 	<?php } ?>
