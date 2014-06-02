@@ -9,7 +9,7 @@ if(isset($_GET["action"]) && $_GET["action"] == "ajax_comments"){// Ajax请求�
 <?php while ( have_posts() ) : the_post();?>
 <div id="title"><a href="<?php echo $authordata->user_url; ?>" title="作者：<?php echo $authordata->display_name;?>"><img src="<?php echo output_avatar_url( get_the_author_email(), 48 ); ?>"></a>
 <h1><?php the_title() ?></h1>
-<span class="desc"><?php the_time('Y-m-d'); ?>  /  <?php the_views(); ?> 次围观  /  <?php comments_popup_link('快抢沙发', '沙发被抢', '% 条评论'); ?></span>
+<span class="desc"><?php the_time('Y-m-d'); ?>  /  <?php echo getPostViews(get_the_ID()); ?> 次围观  /  <?php comments_popup_link('快抢沙发', '沙发被抢', '% 条评论'); ?></span>
 </div>
 <div class="post">
 			<?php the_content(); ?>

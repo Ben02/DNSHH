@@ -11,6 +11,31 @@ if ( !function_exists( 'optionsframework_init' ) ) {
 	require_once dirname( __FILE__ ) . '/inc/options-framework.php';
 }
 
+// 文章浏览统计功能
+function getPostViews($postID){
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count;
+}
+ 
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+
 //支持外链缩略图
 if ( function_exists('add_theme_support') )
  add_theme_support('post-thumbnails');
@@ -93,11 +118,11 @@ $getstar = of_get_option('setstar');
 $setstar = explode("\n", $getstar);
 
     if (in_array($email, $setadmin)) {
-        echo '<img class="vip" title="独一无二的博主认证" src="http://1.labcdn.sinaapp.com/cache/images/yellowv.png" width="15px"/>';
+        echo '<img class="vip" title="独一无二的博主认证" src="'.bloginfo('template_url').'/img/yellowv.png" width="15px"/>';
     } else if (in_array($email, $setvip)) {
-        echo '<img class="vip" title="认证贵宾VIP" src="http://1.labcdn.sinaapp.com/cache/images/bluev.png" width="15px"/>';
+        echo '<img class="vip" title="认证贵宾VIP" src="'.bloginfo('template_url').'/img/bluev.png" width="15px"/>';
     } else if (in_array($email, $setstar)) {
-        echo '<img class="vip-water" title="灌水达人" src="http://1.labcdn.sinaapp.com/cache/images/star.png" width="17px"/>';
+        echo '<img class="vip-water" title="灌水达人" src="'.bloginfo('template_url').'/img/star.png" width="17px"/>';
     }
 }
 //随机文章
