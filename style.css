@@ -13,7 +13,74 @@ Tags: 小清新,单栏,简洁,蓝白
     2013.02.23
 
 -------------------------*/
+body {
+	margin:0;
+	font-family:'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
+	font-size:13px;
+	line-height:180%;
+	color:#333;
+	background:url(img/idev.png) #E1E1E1;
+	background-repeat:repeat;
+}
+a {
+	color:#0088cc;
+	text-decoration:none;
+}
+a:hover {
+	color:#005580;
+	text-decoration:none;
+}
+input,button,select,textarea {
+	font-family: 'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+	margin: 15px 0 15px 9px;
+	font-weight: normal;
+	border-left: 5px solid #0088cc;
+	padding: 7px 0 7px 10px;
+	color: #0088cc;
+}
+h1 {
+	font-size: 24px;
+	line-height: 12px;
+	border-bottom: 1px solid #eee;
+	margin-left: 0;
+}
 
+h2 {
+	font-size: 16px;
+	line-height: 10px;
+	border-bottom: 1px solid #eee;
+	margin-left: 0;
+}
+
+h3 {
+	font-size: 16px;
+	line-height: 8px;
+}
+
+h4 {
+	font-size: 14px;
+	line-height: 8px;
+}
+
+h5 {
+	font-size: 14px;
+	line-height: 8px;
+}
+
+h6 {
+	font-size: 12px;
+	line-height: 8px;
+}
+
+input.search-query {
+	height:13px;
+	width:120px;
+	display:inline;
+	color:#999;
+	float:right;
+}
 #Main {
 	width:700px;
 	text-align:left;
@@ -574,23 +641,7 @@ ol.comment-list li .comment-reply a:hover,.respond .cancel-comment-reply a:hover
 .highslide img {
 	border: 1px solid #EEE!important;
 }
-body {
-	margin:0;
-	font-family:'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
-	font-size:13px;
-	line-height:180%;
-	color:#333;
-	background:url(img/idev.png) #E1E1E1;
-	background-repeat:repeat;
-}
-a {
-	color:#0088cc;
-	text-decoration:none;
-}
-a:hover {
-	color:#005580;
-	text-decoration:none;
-}
+
 ::-webkit-scrollbar {
 	width:10px;
 	margin-right:2px
@@ -700,70 +751,12 @@ a:hover {
 	color: #468847;
 }
 
-input,button,select,textarea {
-	font-family: 'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
-}
-h1,h2,h3,h4,h5,h6 {
-	margin: 15px 0 15px 9px;
-	font-family: 'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
-	font-weight: normal;
-	text-rendering: optimizelegibility;
-	border-left: 5px solid #0088cc;
-	padding: 7px 0 7px 10px;
-	color: #0088cc;
-}
-h1 {
-	font-size: 24px;
-	line-height: 12px;
-	border-bottom: 1px solid #eee;
-	margin-left: 0;
-}
-
-h2 {
-	font-size: 16px;
-	line-height: 10px;
-	border-bottom: 1px solid #eee;
-	margin-left: 0;
-}
-
-h3 {
-	font-size: 16px;
-	line-height: 8px;
-}
-
-h4 {
-	font-size: 14px;
-	line-height: 8px;
-}
-
-h5 {
-	font-size: 14px;
-	line-height: 8px;
-}
-
-h6 {
-	font-size: 12px;
-	line-height: 8px;
-}
-
-.navbar-search .search-query {
-	padding: 4px 9px;
-	font-family: 'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
-	font-size: 13px;
-	font-size: 13px;
-	font-weight: normal;
-	line-height: 1;
-	color: #ffffff;
-	background-color: #626262;
-	border: 1px solid #151515;
-	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
-	-moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
-	-webkit-transition: none;
-	-moz-transition: none;
-	-ms-transition: none;
-	-o-transition: none;
-	transition: none;
+.hide-text {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
 }
 
 .breadcrumb {
@@ -788,4 +781,16 @@ h6 {
 
 .breadcrumb .active {
 	color: #999999;
+}
+
+.input-append, .input-prepend {
+margin-bottom: 5px;
+display: block;
+}
+
+#gotop{
+	position: fixed;
+	bottom: 48px;
+	right: 20px;
+	cursor: pointer;
 }
