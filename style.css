@@ -50,7 +50,7 @@ li {
 	margin-right:5px;
 	float:right;
 	font-size:13px;
-	font-family:'Trebuchet MS',微软雅黑,"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
+	font-family:'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
 }
 .desc a {
 	color:#999;
@@ -60,7 +60,7 @@ ol.page-navigator {
 	list-style:none;
 	font-size:12px;
 	line-height:30px;
-	font-family:'Trebuchet MS',微软雅黑,"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
+	font-family:'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
 	margin:-10px auto 10px auto;
 }
 #comments ol.page-navigator {
@@ -206,7 +206,7 @@ ol.page-navigator a {
 	color:#555;
 	border:1px dashed #dbdbdb;
 	background:#f8f8f8;
-	font-family:'Trebuchet MS',微软雅黑,"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
+	font-family:'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
 }
 #tui {
 	margin-top:20px;
@@ -576,7 +576,7 @@ ol.comment-list li .comment-reply a:hover,.respond .cancel-comment-reply a:hover
 }
 body {
 	margin:0;
-	font-family:'Trebuchet MS',微软雅黑,"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
+	font-family:'Trebuchet MS',"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;
 	font-size:13px;
 	line-height:180%;
 	color:#333;
