@@ -2,7 +2,7 @@
 // 评论Ajax翻页 by 牧风
 
 if(isset($_GET["action"]) && $_GET["action"] == "ajax_comments"){// Ajax请求的头数据
-    comments_template();
+    comments_template(); 
 }else{
 	get_header();
 ?> 
