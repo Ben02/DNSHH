@@ -16,7 +16,7 @@
   <div id="Main">
 
     <div id="Header">
-			<a href="<?php echo site_url(); ?>" title="<?php bloginfo('name') ?>">
+			<a href="<?php bloginfo('siteurl') ?>" title="<?php bloginfo('name') ?>">
         <?php if (of_get_option('logourl','')): ?>
           <img src="<?php echo of_get_option('logourl',''); ?>" alt="<?php bloginfo('name'); ?>" />
         <?php else : ?>
