@@ -471,7 +471,7 @@ ol.page-navigator a {
 #comment_form {
 	display:block;
 	padding:10px 10px 0 0;
-	padding-right:200px;
+	padding-right:225px;
 	overflow:hidden;
 	position:relative;
 }
@@ -787,7 +787,11 @@ ol.comment-list li .comment-reply a:hover,.respond .cancel-comment-reply a:hover
 margin-bottom: 5px;
 display: block;
 }
-
+.input-prepend .add-on:first-child, .input-prepend .btn:first-child {
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
 #gotop{
 	position: fixed;
 	bottom: 48px;

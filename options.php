@@ -34,13 +34,13 @@ function optionsframework_options() {
 		'type' => 'heading');
 	
 	$options[] = array(
-		'name' => __('DNSHH主题', 'options_framework_theme'),
-		'desc' => __('<p style="font-size:13px;">感谢您使用DNSHH主题V1.2版本！此版本更新日期：2013-03-09（<a href="http://ben-lab.com" target="_blank">检查更新</a>） 如果您喜欢这款主题，请<a href="https://me.alipay.com/donateben" target="_blank">捐助</a>我，您的支持是我最大的动力！</p>', 'options_framework_theme'),
+		'name' => __('DNSHH V1.2', 'options_framework_theme'),
+		'desc' => __('<p style="font-size:13px;">感谢您使用DNSHH主题！此版本更新日期：2013-03-09（<a href="http://ben-lab.com" target="_blank">检查更新</a>） 如果您喜欢这款主题，请<a href="https://me.alipay.com/donateben" target="_blank">捐助</a>我，您的支持是我最大的动力！</p>', 'options_framework_theme'),
 		'type' => 'info');
 
 	$options[] = array(
 		'name' => __('LOGO地址', 'options_framework_theme'),
-		'desc' => __('在这里填入一个图片URL地址, 博客头部将显示一个LOGO；留空则以文字形式显示网站标题', 'options_framework_theme'),
+		'desc' => __('在这里填入一个图片URL地址, 博客头部将显示该LOGO；留空则以文字形式显示网站标题', 'options_framework_theme'),
 		'id' => 'logourl',
 		'std' => '',
 		'type' => 'text');
@@ -57,7 +57,7 @@ function optionsframework_options() {
 
 	$options[] = array(
 		'name' => __('略缩图显示', 'options_framework_theme'),
-		'desc' => __('SAE或BAE等不兼容timthumb的用户请禁用此功能；禁用后可删除Thumbnail插件','options_framework_theme'),
+		'desc' => __('SAE或BAE等不兼容timthumb的用户请禁用此功能','options_framework_theme'),
 		'id' => 'thumbdisplay',
 		'std' => 'display',
 		'type' => 'radio',
@@ -102,7 +102,7 @@ function optionsframework_options() {
 		'name' => __('百度分享id', 'options_framework_theme'),
 		'desc' => __('请输入您的百度分享id', 'options_framework_theme'),
 		'id' => 'shareid',
-		'std' => '190950',
+		'std' => '',
 		'type' => 'text');
 
 	$options[] = array(

@@ -13,10 +13,10 @@ if(isset($_GET["action"]) && $_GET["action"] == "ajax_comments"){// Ajax请求�
 <span class="desc"><?php the_time('Y-m-d'); ?>  /  <?php echo getPostViews(get_the_ID()); ?> 次围观  /  <?php comments_popup_link('快抢沙发', '沙发被抢', '% 条评论'); ?></span>
 </div>
 <div class="post">
-			<?php the_content(); ?>
+	<?php the_content(); ?>
 </div>
 <div id="comments">
-		<?php comments_template(); ?>
+	<?php comments_template(); ?>
 </div><!-- #comments .comments-area -->
 <div class="clear"></div>
 <?php get_footer(); ?>
