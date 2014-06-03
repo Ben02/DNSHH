@@ -35,7 +35,7 @@ function optionsframework_options() {
 	
 	$options[] = array(
 		'name' => __('DNSHH V1.2', 'options_framework_theme'),
-		'desc' => __('<p style="font-size:13px;">感谢您使用DNSHH主题！此版本更新日期：2013-03-09（<a href="http://ben-lab.com" target="_blank">检查更新</a>） 如果您喜欢这款主题，请<a href="https://me.alipay.com/donateben" target="_blank">捐助</a>我，您的支持是我最大的动力！</p>', 'options_framework_theme'),
+		'desc' => __('<p style="font-size:13px;">感谢您使用DNSHH主题！此版本更新日期：2013-03-09（<a href="http://ben-lab.com/typecho/1805.html" target="_blank">检查更新</a>） 如果您喜欢这款主题，请考虑捐助我，您的支持是我最大的动力！</p>', 'options_framework_theme'),
 		'type' => 'info');
 
 	$options[] = array(

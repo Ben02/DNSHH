@@ -73,7 +73,9 @@ h6 {
 	font-size: 12px;
 	line-height: 8px;
 }
-
+li {
+	list-style:none;
+}
 input.search-query {
 	height:13px;
 	width:120px;
@@ -90,9 +92,6 @@ input.search-query {
 	-moz-box-shadow:0px 2px 5px rgba(0,0,0,0.15);
 	box-shadow:0px 2px 5px rgba(0,0,0,0.15);
 	padding:30px;
-}
-li {
-	list-style:none;
 }
 #Center {
 	padding:24px 0px 0px 0px;
