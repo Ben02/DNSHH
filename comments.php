@@ -47,7 +47,7 @@ $(function() {
 				 <div class="addcomment" id="respond"></div>
 				<?php $commenter = wp_get_current_commenter();　?>
 				<h3 id="response"><b style="font-size:18px"> &gt; </b><?php comment_form_title( '添加新评论', '向 %s 进行回复' );?></h3>
-				<form method="post" action="<?php bloginfo('siteurl') ?>/wp-comments-post.php" id="comment_form">
+				<form method="post" action="<?php echo site_url(); ?>/wp-comments-post.php" id="comment_form">
 					<div class="ie6show"></div>
 					<div class="form-vertical">
 						<p><textarea style="width:90%;float:left;margin: 0 15px 10px 10px;height: 140px;" name="comment" id="comment" tabindex="1" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('misubmit').click();return false};"></textarea></p>
